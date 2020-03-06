@@ -1,0 +1,127 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /battleships:
+    get:
+      operationId: battleships.read_all
+      tags:
+        - Battleships
+      summary: The battleships data structure supported by the server application
+      description: Read the list of all existing battleships
+      parameters:
+        - name: length
+          in: query
+          type: integer
+          description: Number of ships to get from battleships
+          required: false
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from beginning of list where to start gathering ships
+          required: false
+      responses:
+        200:
+          description: Successful read battleships list operation
+          schema:
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+                country:
+                  type: string
+                caliber:
+                  type: number
+                guns:
+                  type: integer
+                timestamp:
+                  type: string
+    post:
+      operationId: battleships.create
+      tags:
+      - Battleships
+      summary: Create a ship and add it to the battleships list
+      description: Create a new ship in the battleships list
+      parameters:
+        - name: ship
+          in: body
+          description: Ship to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of ship to create
+      responses:
+        201:
+          description: Successfully created ship in list
+  /battleships/{name}:
+    get:
+      operationId: battleships.read_one
+      tags:
+        - Battleships
+      summary: Read one ship from the battleships list
+      description: Read one ship from the battleships list
+      parameters:
+        - name: name
+          in: path
+          description: Name of the ship to get from the list
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read ship from battleships list
+          schema:
+            properties:
+              name:
+                type: string
+              timestamp:
+                type: string
+    put:
+      operationId: battleships.update
+      tags:
+        - Battleships
+      summary: Update a ship in the battleships list
+      description: Update a ship in the battleships list
+      parameters:
+        - name: name
+          in: path
+          description: Name of the ship to get from the list
+          type: string
+          required: True
+        - name: battleship
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+      responses:
+        200:
+          description: Successfully updated ship in people list
+    delete:
+      operationId: battleships.delete
+      tags:
+        - Battleships
+      summary: Delete a ship from the battleships list
+      description: Delete a ship
+      parameters:
+        - name: name
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully deleted a ship from battleships list
