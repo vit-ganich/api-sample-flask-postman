@@ -1,7 +1,7 @@
 # api-sample-flask-postman
 Flask app for API testing with Postman
 
-#### Swagger API documentation:
+#### Swagger API documentation (you must run the app):
 http://localhost:5000/api/ui/
 
 #### Postman collection link:
