@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "d39ed710-3c0e-4fcf-a5bb-ff147d17efed",
+		"name": "BattleshipsAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all ships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19ee4b2b-7a50-4024-a97f-7debdc91082b",
+						"exec": [
+							"pm.test(\"Verify status code is 200\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/battleships",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mikasa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "94aa46f4-b804-46ec-8241-3340800d4e52",
+						"exec": [
+							"pm.test(\"Verify status code is '200'\", function () { ",
+							"    pm.response.to.have.status(200); ",
+							"});",
+							"",
+							"var response = pm.response.json(); ",
+							"",
+							"pm.test(\"Verify name is 'Mikasa'\", function () { ",
+							"    pm.expect(response.name).is.to.equal(\"Mikasa\");",
+							"});",
+							"",
+							"pm.test(\"Verify country is 'Japan'\", function () { ",
+							"    pm.expect(response.country).is.to.equal(\"Japan\");  ",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify caliber is '12' inches\", function () { ",
+							"    pm.expect(response.caliber).is.to.equal(12); ",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify guns number is '4'\", function () { ",
+							"    pm.expect(response.guns).is.to.equal(4); ",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/battleships/Mikasa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships",
+						"Mikasa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Iowa battleship",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Iowa\",\r\n    \"country\": \"USA\",\r\n    \"caliber\": 14,\r\n    \"guns\": 9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/battleships",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Iowa was created",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/battleships/Iowa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships",
+						"Iowa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Iowa",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"guns\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/battleships/Iowa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships",
+						"Iowa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Iowa was updated",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/battleships/Iowa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships",
+						"Iowa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Iowa",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/battleships/Iowa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"battleships",
+						"Iowa"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
